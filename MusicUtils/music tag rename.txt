@@ -1,0 +1,3 @@
+'['$cutRight(%_filename%,4)']' %title%
+
+$cutLeft(%artist%,9)
