@@ -9,3 +9,13 @@ df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
 print(df.info())
 
+activities = df.Activity.unique()
+
+first_year = df.Start.min().year
+last_year = df.End.max().year
+
+for year in range(first_year, last_year + 1):
+    dfy = pd.DataFrame(columns=np.hstack(['week', activities]))
+    print(dfy)
+
+    break
