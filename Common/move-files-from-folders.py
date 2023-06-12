@@ -36,3 +36,5 @@ for path, dir_folder, files in os.walk(source):
         print("TARGET PATH:\t", destination)
         
         shutil.move(full_path, destination)
+
+input()
