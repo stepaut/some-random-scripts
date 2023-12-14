@@ -1,21 +1,20 @@
 import os
 import eyed3
 
-directory = os.getcwd()
+directory = input()
+if directory == "":
+    directory = os.getcwd()
 
-# for root, dirs, files in os.walk("."):
-# 	for name in files:
 for filename in os.scandir(directory):
-	if filename.is_file():
-		name = filename.path
-		if name.endswith('.mp3'):
-			try:
-				audiofile = eyed3.load(name)
-				artist = audiofile.tag.artist
-				if os.path.exists(artist) == False:
-					os.mkdir(artist)
-				os.rename(name, artist+"/"+name)
-			except:
-				print(f"file {name} failed")
+    if filename.is_file():
+        dir = filename.path.replace(filename.name, "")
+        if filename.path.endswith(".mp3"):
+            try:
+                audiofile = eyed3.load(filename.path)
+                artist = audiofile.tag.artist
+                if os.path.exists(dir + artist) == False:
+                    os.mkdir(dir + artist)
 
-input()
+                os.rename(filename.path, dir + artist + "\\" + filename.name)
+            except Exception as e:
+                print(f"file {filename.name} failed")
